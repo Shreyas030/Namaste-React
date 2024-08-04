@@ -1,0 +1,37 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "This is Namaste React by Akshay Saini",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shreyas030/Namaste-React.git"
+  },
+  "keywords": [
+    "react",
+    "js"
+  ],
+  "author": "Shreyas Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shreyas030/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/Shreyas030/Namaste-React#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.7"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1"
+  },
+  "browsersList": [
+    "last 2 version"
+  ]
+}
