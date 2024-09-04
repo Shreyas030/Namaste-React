@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client"
 
 import Header from "./components/Header";
@@ -10,16 +10,43 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
+
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 
+// import Grocery from "./components/Grocery";
+const Grocery = lazy(() => import("./components/Grocery"));
+
+//!...........................................
 //Main layout
 const AppLayout = () => {
 
-    return <div className="app" >
-        <Header></Header>
-        <Outlet></Outlet>
-    </div>
+    const [userName, setUserName] = useState();
+
+    useEffect(() => {
+        const data = {
+            name: "John Doe",
+        };
+        setUserName(data.name);
+
+    }, []);
+
+    return (
+        <Provider store={appStore}>
+            {/* <UserContext.Provider value={{ loggedInUser: userName }}> */}
+            <div className="app" >
+                <Header></Header>
+                <Outlet></Outlet>
+            </div>
+            {/* </UserContext.Provider> */}
+        </Provider>
+
+    );
 }
+
 
 const appRouter = createBrowserRouter([
     {
@@ -40,8 +67,19 @@ const appRouter = createBrowserRouter([
                 element: <Contact />
             },
             {
+
+                path: "/grocery",
+                element:
+                    <Suspense fallback={<h1>Loading ...........</h1>} ><Grocery /> </Suspense>
+
+            },
+            {
                 path: "/restaurants/:resId",
                 element: <RestaurantMenu />
+            },
+            {
+                path: "/cart",
+                element: <Cart />,
             }
         ],
         errorElement: <Error />
